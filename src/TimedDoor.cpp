@@ -25,7 +25,7 @@ void TimedDoor::throwState() const {
 }
 
 void TimedDoor::DoorTimeOut() {
-    throw std::string("please close the door!");
+    throw std::string("close the door!");
 }
 
 
