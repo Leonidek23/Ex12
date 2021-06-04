@@ -1,11 +1,9 @@
 // Copyright Leonidek23 2021
 
-#include<ctime>
-#include<string>
 #include <TimedDoor.h>
 
 TimedDoor::TimedDoor(int time)
-        : iTimeout(time), opened(false), adapter(new DoorTimerAdapter(*this)) {}
+    : iTimeout(time), opened(false), adapter(new DoorTimerAdapter(*this)) {}
 
 bool TimedDoor::isDoorOpened() { return this->opened; }
 
@@ -31,12 +29,10 @@ void TimedDoor::DoorTimeOut() {
 
 DoorTimerAdapter::DoorTimerAdapter(const TimedDoor &_door) : door(_door) {}
 
-void Timer::sleep(int iTimeout) {
-    time_t start = time(nullptr);
-    while (time(nullptr) - start < iTimeout) {
-        continue;
+void Timer::sleep(int t) {
+    time_t tic = clock();
+    while (clock() < tic + t * CLOCKS_PER_SEC) {}
     }
-}
 
 void Timer::tregister(int time, TimerClient *timer) {
     sleep(time);

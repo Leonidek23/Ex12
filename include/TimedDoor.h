@@ -1,5 +1,6 @@
 // Copyright Leonidek23 2021
-
+#include<ctime>
+#include<string>
 #ifndef INCLUDE_TIMEDDOOR_H_
 #define INCLUDE_TIMEDDOOR_H_
 
