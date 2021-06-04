@@ -5,7 +5,7 @@
 #include <TimedDoor.h>
 
 TimedDoor::TimedDoor(int time)
-        :iTimeout(time), opened(false), adapter(new DoorTimerAdapter(*this)) {}
+        : iTimeout(time), opened(false), adapter(new DoorTimerAdapter(*this)) {}
 
 bool TimedDoor::isDoorOpened() { return this->opened; }
 
@@ -29,7 +29,7 @@ void TimedDoor::DoorTimeOut() {
 }
 
 
-DoorTimerAdapter::DoorTimerAdapter(const TimedDoor& _door): door(_door) {}
+DoorTimerAdapter::DoorTimerAdapter(const TimedDoor &_door) : door(_door) {}
 
 void Timer::sleep(int iTimeout) {
     time_t start = time(nullptr);
@@ -38,7 +38,7 @@ void Timer::sleep(int iTimeout) {
     }
 }
 
-void Timer::tregister(int time, TimerClient* timer) {
+void Timer::tregister(int time, TimerClient *timer) {
     sleep(time);
 }
 
