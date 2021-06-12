@@ -37,7 +37,7 @@ void Timer::sleep(int t) {
 }
 
 void Timer::tregister(int time, TimerClient *timer) {
-    client=timer;
+    client = timer;
     sleep(time);
 }
 

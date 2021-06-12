@@ -10,10 +10,11 @@ int main() {
     try {
         tDoor.unlock();
     }
-    catch(std::string message) {
+    catch (std::string message) {
         finish = time(nullptr);
         int delta = finish - start;
-        std::cout<<delta;
+        std::cout << delta;
     }
     return 0;
 }
+

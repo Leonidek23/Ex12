@@ -1,6 +1,7 @@
 // Copyright Leonidek23 2021
 #include<ctime>
 #include<string>
+
 #ifndef INCLUDE_TIMEDDOOR_H_
 #define INCLUDE_TIMEDDOOR_H_
 
@@ -13,12 +14,12 @@ class Door;
 class TimedDoor;
 
 class TimerClient {
-public:
+ public:
     virtual void Timeout() = 0;
 };
 
 class Door {
-public:
+ public:
     virtual void lock() = 0;
 
     virtual void unlock() = 0;
@@ -27,21 +28,21 @@ public:
 };
 
 class DoorTimerAdapter : public TimerClient {
-private:
+ private:
     const TimedDoor &door;
-public:
+ public:
     explicit DoorTimerAdapter(const TimedDoor &_door);
 
     void Timeout() override;
 };
 
 class TimedDoor : public Door {
-private:
+ private:
     DoorTimerAdapter *adapter;
     int iTimeout;
     bool opened;
 
-public:
+ public:
     explicit TimedDoor(int);
 
     bool isDoorOpened() override;
@@ -60,7 +61,7 @@ class Timer {
 
     void sleep(int);
 
-public:
+ public:
     void tregister(int, TimerClient *);
 };
 
