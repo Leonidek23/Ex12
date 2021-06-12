@@ -13,12 +13,12 @@ class Door;
 class TimedDoor;
 
 class TimerClient {
- public:
+public:
     virtual void Timeout() = 0;
 };
 
 class Door {
- public:
+public:
     virtual void lock() = 0;
 
     virtual void unlock() = 0;
@@ -27,21 +27,21 @@ class Door {
 };
 
 class DoorTimerAdapter : public TimerClient {
- private:
+private:
     const TimedDoor &door;
- public:
+public:
     explicit DoorTimerAdapter(const TimedDoor &_door);
 
     void Timeout() override;
 };
 
 class TimedDoor : public Door {
- private:
+private:
     DoorTimerAdapter *adapter;
     int iTimeout;
     bool opened;
 
- public:
+public:
     explicit TimedDoor(int);
 
     bool isDoorOpened() override;
@@ -52,16 +52,16 @@ class TimedDoor : public Door {
 
     static void DoorTimeOut();
 
-    [[maybe_unused]] void throwState() const;
+    void throwState() const;
 };
 
 class Timer {
     TimerClient *client;
 
-    static void sleep(int);
+    void sleep(int);
 
- public:
-    static void tregister(int, TimerClient *);
+public:
+    void tregister(int, TimerClient *);
 };
 
 #endif  // INCLUDE_TIMEDDOOR_H_

@@ -3,13 +3,14 @@
 #include <TimedDoor.h>
 
 TimedDoor::TimedDoor(int time)
-    : iTimeout(time), opened(false), adapter(new DoorTimerAdapter(*this)) {}
+        : iTimeout(time), opened(false), adapter(new DoorTimerAdapter(*this)) {}
 
 bool TimedDoor::isDoorOpened() { return this->opened; }
 
 void TimedDoor::unlock() {
-    opened = false;
-    adapter->Timeout();
+    opened = true;
+    Timer t{};
+    t.tregister(iTimeout, adapter);
 }
 
 void TimedDoor::lock() { opened = false; }
@@ -32,9 +33,11 @@ DoorTimerAdapter::DoorTimerAdapter(const TimedDoor &_door) : door(_door) {}
 void Timer::sleep(int t) {
     time_t tic = clock();
     while (clock() < tic + t * CLOCKS_PER_SEC) {}
-    }
+    client->Timeout();
+}
 
 void Timer::tregister(int time, TimerClient *timer) {
+    client=timer;
     sleep(time);
 }
 
